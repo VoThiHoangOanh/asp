@@ -17,7 +17,10 @@
                             <ul class="menu-category">
                                 @foreach (var item in Model.ListCategory)
                                 {
-                                    <li><a href="#">@item.Name</a></li>
+                                    <li>
+                                       
+                                        @Html.ActionLink(item.Name, "ProductCategory", "Category", new { @Id = item.Id },null)
+                                    </li>
                                 }
 
 
@@ -142,7 +145,7 @@
                 </div> <!-- col.// -->
                 <div class="col-md-9">
                     <ul class="row no-gutters bordered-cols">
-                        @foreach (var item in Model.ListProduct.Where(n => n.BrandId == 1).Take(12))
+                        @foreach (var item in Model.ListProduct.Where(n => n.BrandId == 1).Take(8))
                         {
                             <li class="col-6 col-lg-3 col-md-4">
                                 <a href="#" class="item">

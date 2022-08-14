@@ -15,6 +15,11 @@ namespace VoThiHoangOanh.Controllers
             var lstCategory = objWebBanHangEntities.Categories.ToList();
             return View(lstCategory);
         }
+        public ActionResult ProductCategory(int Id)
+        {
+            var listProduct = objWebBanHangEntities.Products.Where(n => n.CategoryId == Id).ToList();
+            return View(listProduct);
+        }
     }
     
 }
