@@ -23,7 +23,6 @@
                                     </li>
                                 }
 
-
                             </ul>
                         </nav>
                     </aside> <!-- col.// -->
@@ -147,15 +146,19 @@
                     <ul class="row no-gutters bordered-cols">
                         @foreach (var item in Model.ListProduct.Where(n => n.BrandId == 1).Take(8))
                         {
-                            <li class="col-6 col-lg-3 col-md-4">
-                                <a href="#" class="item">
-                                    <div class="card-body">
-                                        <h6 class="title">Well made women clothes with trending collection  </h6>
-                                        <img class="img-sm float-right" src="~/Content/images/items/@item.Avatar">
-                                        <p class="text-muted"><i class="fa fa-map-marker-alt"></i> @item.Name</p>
-                                    </div>
-                                </a>
-                            </li>
+                        <li class="col-6 col-lg-3 col-md-4">
+
+                            <a href="@Url.Action("Detail","Product",new {Id=item.Id })" class="img-wrap">
+                                <img src="~/Content/images/items/@item.Avatar">
+                                <div class="text-wrap p-3">
+                                    <!--<a href="#" class="title">@item.Name</a>-->
+                                    @Html.ActionLink(item.Name, "Detail", "Product", new { Id = item.Id })
+                                    <span class="badge badge-danger"> -20% </span>
+                                </div>
+                            </a>
+                            
+                            
+                        </li>
                         }
 
 
@@ -187,15 +190,19 @@
                     <ul class="row no-gutters bordered-cols">
                         @foreach (var item in Model.ListProduct.Where(n => n.TypeId == 2).Take(8))
                         {
-                            <li class="col-6 col-lg-3 col-md-4">
-                                <a href="#" class="item">
-                                    <div class="card-body">
-                                        <h6 class="title">Well made electronic  stuff collection  </h6>
-                                        <img class="img-sm float-right" src="~/Content/images/items/@item.Avatar">
-                                        <p class="text-muted"><i class="fa fa-map-marker-alt"></i> @item.Name</p>
-                                    </div>
-                                </a>
-                            </li>
+                        <li class="col-6 col-lg-3 col-md-4">
+
+                            <a href="@Url.Action("Detail","Product",new {Id=item.Id })" class="img-wrap">
+                                <img src="~/Content/images/items/@item.Avatar">
+                                <div class="text-wrap p-3">
+                                    <!--<a href="#" class="title">@item.Name</a>-->
+                                    @Html.ActionLink(item.Name, "Detail", "Product", new { Id = item.Id })
+                                    <span class="badge badge-danger"> -20% </span>
+                                </div>
+                            </a>
+
+
+                        </li>
                         }
 
 
@@ -278,6 +285,7 @@
         <div class="row row-sm">
             @foreach (var item in Model.ListProduct.Where(n => n.TypeId == 2).Take(6))
             {
+
                 <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                     <div class="card card-sm card-product-grid">
                         <a href="#" class="img-wrap"> <img src="~/Content/images/items/@item.Avatar"> </a>

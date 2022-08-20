@@ -3,13 +3,41 @@
     ViewBag.Title = "Detail";
 }
 
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.Id;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm vào giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <section class="py-3 bg-light">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Category name</a></li>
-            <li class="breadcrumb-item"><a href="#">Sub category</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Items</li>
+            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Chi tiết sản phẩm</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
         </ol>
     </div>
 </section>
@@ -30,7 +58,7 @@
                             <a href="#" class="item-thumb"> <img src="~/Content/images/items/son1.jpg"></a>
                             <a href="#" class="item-thumb"> <img src="~/Content/images/items/son2.jpg"></a>
                             <a href="#" class="item-thumb"> <img src="~/Content/images/items/son3.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/son4.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/sonkem.jpg"></a>
                         </div> <!-- slider-nav.// -->
                     </article> <!-- gallery-wrap .end// -->
                 </div> <!-- card.// -->
@@ -63,7 +91,7 @@
                     </div> <!-- price-detail-wrap .// -->
 
                     <p>
-                       @Model.ShortDes
+                        @Model.ShortDes
                     </p>
 
 
@@ -86,24 +114,18 @@
                     <div class="form-row  mt-4">
                         <div class="form-group col-md flex-grow-0">
                             <div class="input-group mb-3 input-spinner">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-light" type="button" id="button-plus"> + </button>
-                                </div>
-                                <input type="text" class="form-control" value="1">
-                                <div class="input-group-append">
-                                    <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-                                </div>
+                                <input type="text" id="ipQuantity" class="form-control" value="1">
                             </div>
                         </div> <!-- col.// -->
                         <div class="form-group col-md">
-                            <a href="#" class="btn  btn-primary">
-                                <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span>
-                            </a>
-                            <a href="#" class="btn btn-light">
-                                <i class="fas fa-envelope"></i> <span class="text">Contact supplier</span>
+                            <a href="#" id="addtocart" class="btn  btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="text">
+                                    Thêm vào giỏ hàng
+                                </span>
                             </a>
                         </div> <!-- col.// -->
-                    </div> <!-- row.// -->
+                    </div>
 
                 </article> <!-- product-info-aside .// -->
             </main> <!-- col.// -->
