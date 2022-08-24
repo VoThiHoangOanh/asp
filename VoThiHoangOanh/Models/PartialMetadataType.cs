@@ -12,7 +12,8 @@ namespace VoThiHoangOanh.Context
     [MetadataType(typeof(UserMasterData))]
     public partial class User
     {
-        
+        [NotMapped]
+        public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
     }
 
     [MetadataType(typeof(ProductMasterData))]
@@ -33,4 +34,11 @@ namespace VoThiHoangOanh.Context
         [NotMapped]
         public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
     }
+    public partial class Order
+    {
+        [NotMapped]
+        public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
+    }
+
+
 }
