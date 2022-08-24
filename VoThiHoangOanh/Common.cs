@@ -53,5 +53,15 @@ namespace VoThiHoangOanh
             public int Id { get; set; }
             public string Name { get; set; }
         }
+        public class CategoryType
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+        public class BrandType
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
     }
 }

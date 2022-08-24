@@ -13,7 +13,7 @@
                 <div class="row">
                     <aside class="col-lg col-md-3 flex-lg-grow-0">
                         <nav class="nav-home-aside">
-                            <h6 class="title-category">Danh mục <i class="d-md-none icon fa fa-chevron-down"></i></h6>
+                            <h6 class="title-category">Danh mục sản phẩm <i class="d-md-none icon fa fa-chevron-down"></i></h6>
                             <ul class="menu-category">
                                 @foreach (var item in Model.ListCategory)
                                 {
@@ -68,9 +68,9 @@
                                 <div class="card-banner border-bottom">
                                     <div class="py-3" style="width:80%">
                                         <h6 class="card-title">@item.Name</h6>
-                                        <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
+                                        <a href="@Url.Action("ProductCategory","Category",new {Id=item.Id })" class="btn btn-secondary btn-sm"> Xem ngay </a>
                                     </div>
-                                    <img src="~/Content/images/items/son1.jpg" height="80" class="img-bg">
+                                    <img src="~/Content/images/items/@item.Avatar" height="80" class="img-bg">
                                 </div>
                             }
 

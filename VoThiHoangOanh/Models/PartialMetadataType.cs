@@ -21,5 +21,16 @@ namespace VoThiHoangOanh.Context
         [NotMapped]
         public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
     }
-
+    [MetadataType(typeof(CategoryMasterData))]
+    public partial class Category
+    {
+        [NotMapped]
+        public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
+    }
+    [MetadataType(typeof(BrandMasterData))]
+    public partial class Brand
+    {
+        [NotMapped]
+        public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
+    }
 }

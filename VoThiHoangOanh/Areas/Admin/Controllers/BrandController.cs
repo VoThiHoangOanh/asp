@@ -8,19 +8,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VoThiHoangOanh.Context;
-using VoThiHoangOanh.Models;
 using static VoThiHoangOanh.Common;
 
 namespace VoThiHoangOanh.Areas.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class BrandController : Controller
     {
         WebBanHangEntities7 objWebBanHangEntities = new WebBanHangEntities7();
-
-        // GET: Admin/Product
+        // GET: Admin/Brand
         public ActionResult Index(string currentFilter, string SearchString, int? page)
         {
-            var lstProduct = new List<Product>();
+            var lstBrand = new List<Brand>();
             if (SearchString != null)
             {
                 page = 1;
@@ -31,31 +29,29 @@ namespace VoThiHoangOanh.Areas.Admin.Controllers
             }
             if (!string.IsNullOrEmpty(SearchString))
             {
-                lstProduct = objWebBanHangEntities.Products.Where(n => n.Name.Contains(SearchString)).ToList();
+                lstBrand = objWebBanHangEntities.Brands.Where(n => n.Name.Contains(SearchString)).ToList();
             }
             else
             {
-                lstProduct = objWebBanHangEntities.Products.ToList();
+                lstBrand = objWebBanHangEntities.Brands.ToList();
             }
             ViewBag.CurrentFilter = SearchString;
             int pageSize = 4;
             int pageNumber = (page ?? 1);
-            lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
-            return View(lstProduct.ToPagedList(pageNumber, pageSize));
+            lstBrand = lstBrand.OrderByDescending(n => n.Id).ToList();
+            return View(lstBrand.ToPagedList(pageNumber, pageSize));
         }
-
-
         [HttpGet]
         public ActionResult Create()
         {
             this.LoadData();
             return View();
         }
-        
+
         [ValidateInput(false)]
 
         [HttpPost]
-        public ActionResult Create(Product objProduct)
+        public ActionResult Create(Brand objBrand)
 
         {
             this.LoadData();
@@ -63,31 +59,31 @@ namespace VoThiHoangOanh.Areas.Admin.Controllers
             {
                 try
                 {
-                    if (objProduct.ImageUpLoad != null)
+                    if (objBrand.ImageUpLoad != null)
                     {
-                        string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpLoad.FileName);
+                        string fileName = Path.GetFileNameWithoutExtension(objBrand.ImageUpLoad.FileName);
                         //ten hinh
-                        string extension = Path.GetExtension(objProduct.ImageUpLoad.FileName);
+                        string extension = Path.GetExtension(objBrand.ImageUpLoad.FileName);
                         //jpg
                         fileName = fileName + extension;
                         //ten hinh.jpg
-                        objProduct.Avatar = fileName;
-                        objProduct.ImageUpLoad.SaveAs(Path.Combine(Server.MapPath("~/Content/images/items"), fileName));
+                        objBrand.Avatar = fileName;
+                        objBrand.ImageUpLoad.SaveAs(Path.Combine(Server.MapPath("~/Content/images/items"), fileName));
                     }
-                    objProduct.CreatedOnUtc = DateTime.Now;
-                    objWebBanHangEntities.Products.Add(objProduct);
+                    objBrand.CreatedOnUtc = DateTime.Now;
+                    objWebBanHangEntities.Brands.Add(objBrand);
                     objWebBanHangEntities.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                catch 
+                catch
                 {
-                    return View(objProduct);
+                    return View(objBrand);
 
                 }
-                
+
             }
 
-            return View(objProduct);
+            return View(objBrand);
         }
 
         void LoadData()
@@ -106,43 +102,41 @@ namespace VoThiHoangOanh.Areas.Admin.Controllers
             ViewBag.ListBrand = objCommon.ToSelectList(dtBrand, "Id", "Name");
 
             //Loai san pham
-            List<ProductType> lstProductType = new List<ProductType>();
-            ProductType objProductType = new ProductType();
-            objProductType.Id = 01;
-            objProductType.Name = "Giảm giá sốc";
-            lstProductType.Add(objProductType);
+            List<BrandType> lstBrandType = new List<BrandType>();
+            BrandType objBrandType = new BrandType();
+            objBrandType.Id = 01;
+            objBrandType.Name = "Giảm giá sốc";
+            lstBrandType.Add(objBrandType);
 
-            objProductType = new ProductType();
-            objProductType.Id = 02;
-            objProductType.Name = "Đề xuất";
-            lstProductType.Add(objProductType);
+            objBrandType = new BrandType();
+            objBrandType.Id = 02;
+            objBrandType.Name = "Đề xuất";
+            lstBrandType.Add(objBrandType);
 
-            DataTable dtProductType = converter.ToDataTable(lstProductType);
+            DataTable dtBrandType = converter.ToDataTable(lstBrandType);
             //convert sang select list dang value, text
-            ViewBag.ProductType = objCommon.ToSelectList(dtProductType, "Id", "Name");
+            ViewBag.BrandType = objCommon.ToSelectList(dtBrandType, "Id", "Name");
         }
-
-
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var objProduct = objWebBanHangEntities.Products.Where(n => n.Id == id).FirstOrDefault();
-            return View(objProduct);
+            var objBrand = objWebBanHangEntities.Brands.Where(n => n.Id == id).FirstOrDefault();
+            return View(objBrand);
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var objProduct = objWebBanHangEntities.Products.Where(n => n.Id == id).FirstOrDefault();
+            var objBrand = objWebBanHangEntities.Brands.Where(n => n.Id == id).FirstOrDefault();
 
-            return View(objProduct);
+            return View(objBrand);
         }
 
         [HttpPost]
-        public ActionResult Delete(Product objPro)
+        public ActionResult Delete(Brand objPro)
         {
-            var objProduct = objWebBanHangEntities.Products.Where(n => n.Id == objPro.Id).FirstOrDefault();
-            objWebBanHangEntities.Products.Remove(objProduct);
+            var objBrand = objWebBanHangEntities.Brands.Where(n => n.Id == objPro.Id).FirstOrDefault();
+            objWebBanHangEntities.Brands.Remove(objBrand);
             objWebBanHangEntities.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -150,39 +144,37 @@ namespace VoThiHoangOanh.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             this.LoadData();
-            var objProduct = objWebBanHangEntities.Products.Where(n => n.Id == id).FirstOrDefault();
-            return View(objProduct);
+            var objBrand = objWebBanHangEntities.Brands.Where(n => n.Id == id).FirstOrDefault();
+            return View(objBrand);
         }
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product objProduct, FormCollection form)
+        public ActionResult Edit(Brand objBrand, FormCollection form)
         {
-           
-            if (objProduct.ImageUpLoad != null)
+
+            if (objBrand.ImageUpLoad != null)
             {
-                string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpLoad.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(objBrand.ImageUpLoad.FileName);
                 //tenhinh
-                string extension = Path.GetExtension(objProduct.ImageUpLoad.FileName);
+                string extension = Path.GetExtension(objBrand.ImageUpLoad.FileName);
                 //png
                 fileName = fileName + extension;
                 //tenhinh.png
-                objProduct.Avatar = fileName;
-                objProduct.ImageUpLoad.SaveAs(Path.Combine(Server.MapPath("~/Content/images/items"), fileName));
+                objBrand.Avatar = fileName;
+                objBrand.ImageUpLoad.SaveAs(Path.Combine(Server.MapPath("~/Content/images/items"), fileName));
 
             }
             else
             {
-                objProduct.Avatar = form["oldimage"];
-                objWebBanHangEntities.Entry(objProduct).State = EntityState.Modified;
+                objBrand.Avatar = form["oldimage"];
+                objWebBanHangEntities.Entry(objBrand).State = EntityState.Modified;
                 objWebBanHangEntities.SaveChanges();
                 return RedirectToAction("Index");
             }
-            objWebBanHangEntities.Entry(objProduct).State = EntityState.Modified;
+            objWebBanHangEntities.Entry(objBrand).State = EntityState.Modified;
             objWebBanHangEntities.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
     }
 }

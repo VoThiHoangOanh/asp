@@ -135,8 +135,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Context\Brand.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
@@ -162,6 +165,9 @@
     <Compile Include="Context\Order.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\OrderDetail.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\Product.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -177,7 +183,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BrandMasterData.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\CategoryMasterData.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\PartialMetadataType.cs" />
     <Compile Include="Models\ProductMasterData.cs" />
@@ -2326,6 +2334,16 @@
     <Content Include="fonts\fonts\roboto\Roboto-Medium.ttf" />
     <Content Include="fonts\fonts\roboto\Roboto-Regular.ttf" />
     <Content Include="fonts\fonts\roboto\Roboto-Thin.ttf" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
@@ -2680,6 +2698,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

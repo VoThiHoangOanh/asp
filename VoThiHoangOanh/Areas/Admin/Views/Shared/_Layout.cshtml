@@ -209,12 +209,12 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Product
+                                    Quản lí sản phẩm
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -231,15 +231,82 @@
                                         <p>Tất cả sản phẩm </p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
-                                    </a>
-                                </li>
+
                             </ul>
                         </li>
-                       
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Quản lí danh mục
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Category")" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm danh mục sản phẩm </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Category")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tất cả danh mục </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Thương hiệu
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Brand")" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm Thương hiệu </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Brand")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thương hiệu </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Người dùng
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create", "Users")" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm người dùng </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Users")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Người dùng </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
